@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One&display=swap');
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: black;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #E50914;
+}
+
+.main {
+  width: 70%;
+}
+
+body {
+  background-color: black;
+  color : white;
+}
+
+.logo {
+  width : 120px;
+}
+
+.card {
+  margin : 10px;
+
+}
+
+.card-text{
+}
+
+.header {
+  width : 80%;
+}
+
+.header-content {
+  position: absolute;
+  bottom: 300px;
+  left: 150px;
+  font-size: 20px;
+}
+
+.header-content > h1 {
+  font-family: 'Alfa Slab One', cursive;
+  font-size: 60px;
+}
