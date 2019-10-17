@@ -6,8 +6,6 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Main from './components/Main';
 import Header from './components/Header';
-import LoadMore from "./components/LoadMore";
-import { Carousel } from 'react-bootstrap';
 
 
 // - total
@@ -36,12 +34,9 @@ class App extends React.Component {
         <header>
           <Header />
         </header>
-        <div className="App App-header container-fluid">
-            <Main alt="First slide" />
+            <Main />
+       
           </div>
-          <LoadMore />
-        </div>
-      
         )
     }
   }

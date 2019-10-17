@@ -5,10 +5,10 @@ import { Navbar, Nav, NavDropdown, FormControl, Form, Button } from 'react-boots
 export default function Navbarr() {
 
   const [scrolling, setScrolling] = useState(false);
+  const [query, setQuery] = useState('');
 
   const handleScroll = () => {
-    console.log('hii',window.scrollY)
-    if(window.scrollY === 0) {
+    if(window.scrollY === 0 || window.scrollY === 50) {
         setScrolling(false);
     } else if (window.scrollY > 800) {
         setScrolling(true);
@@ -19,11 +19,11 @@ export default function Navbarr() {
     window.addEventListener('scroll', handleScroll);
   }, [])
   
-
-  console.log(scrolling)
+  console.log(query)
+  
     return (
         <div>    
-<Navbar collapseOnSelect expand="lg" variant="dark"  fixed="top" style={{ backgroundColor: scrolling ? "black": "transparent"}}>
+<Navbar collapseOnSelect expand="lg" variant="dark" fixed="top" className="transition" style={{ backgroundColor: scrolling ? "black": "transparent"}}>
   <Navbar.Brand href="#home"><img src={logo} className="logo" /></Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
@@ -44,9 +44,9 @@ export default function Navbarr() {
         Dank memes
       </Nav.Link>
     </Nav>
-    <Form inline>
+    <Form onSubmit={() => console.log('submitting')} inline onChange={(e) => setQuery(e.target.value)}>
       <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-      <Button variant="outline-danger">Search</Button>
+      <Button type="submit" variant="outline-danger">Search</Button>
     </Form>
   </Navbar.Collapse>
 </Navbar>

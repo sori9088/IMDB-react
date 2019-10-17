@@ -28,11 +28,7 @@ class LoadMore extends React.Component {
 
         return (
             <div class="container">
-                <div class="d-flex justify-content-center">
-                         <Button id="load-more-btn" variant="danger" type="button" onClick={this.loadMore}>
-                            Load More
-                        </Button>
-                     </div>
+
              </div>
     )
 

@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One&display=swap');
 
+.transition {    
+  -webkit-transition: all .5s ease-in-out;
+	-moz-transition: all .5s ease-in-out;
+	-o-transition: all .5s ease-in-out;
+	transition: all .5s ease-in-out;
+}
+
 .App {
   text-align: center;
 }
@@ -41,21 +48,51 @@ body {
 
 }
 
-.card-text{
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #E50914;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #E50914;
+}
+
+.overlay {
+  position: relative;
 }
 
 .header {
-  width : 80%;
+  width : 85%;
+  position: relative; 
 }
+      
+figure.overlay figcaption {    
+  position: absolute;    
+  width: 100%;    
+  top: 0;  
+  /**text, adjust all values as desired**/    
+  padding: 25% 50% 0 2%;    
+  font-weight: 700;    
+  color: white;  
+  /**some fallback value**/    
+  font-size: 1vw;  
+  /**responsive size is roughly 3.4%  of the device's viewport width**/    
+  
+  }
 
-.header-content {
-  position: absolute;
-  bottom: 300px;
-  left: 150px;
-  font-size: 20px;
-}
-
-.header-content > h1 {
-  font-family: 'Alfa Slab One', cursive;
-  font-size: 60px;
-}
+  figure.overlay figcaption > h1 {
+    font-size: 4vw; 
+    font-family: 'Alfa Slab One', cursive; 
+  }
