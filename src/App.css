@@ -48,6 +48,13 @@ body {
 
 }
 
+.card-title {
+  margin-bottom: .6rem;
+}
+
+.text-muted {
+  margin-bottom: 3px;
+}
 
 /* width */
 ::-webkit-scrollbar {
@@ -96,3 +103,10 @@ figure.overlay figcaption {
     font-size: 4vw; 
     font-family: 'Alfa Slab One', cursive; 
   }
+
+  .scroll {
+    height: 225px;
+    overflow-y: scroll;
+  }
+
+  

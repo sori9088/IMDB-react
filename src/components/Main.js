@@ -72,12 +72,12 @@ class Main extends React.Component {
       <div className="App App-header container-fluid">
             <div className="d-flex flex-wrap main justify-content-center">{this.state.movies && this.state.movies.map((item) => 
             <Card className="bg-dark text-white">
-            <MDBView hover={true} zoom={true}>
+            <MDBView hover zoom>
             <img src={`https://image.tmdb.org/t/p/w400/${item.backdrop_path}`} className="img-fluid" alt="Card image" />
             <MDBMask className="d-flex" overlay="black-strong">
-            <Card.ImgOverlay className="text-center">
+            <Card.ImgOverlay className="text-center scroll">
               <Card.Title><h3>{item.title}</h3></Card.Title>
-              <Card.Text className="text-grey" style={{fontSize : 20}}><Moment fromNow>{item.release_date}</Moment></Card.Text>
+              <Card.Subtitle className="text-muted text-grey"><Moment fromNow>{item.release_date}</Moment></Card.Subtitle>
               <Card.Text style={{fontSize: 15}}>
                   <div className="overview">
                   {item.overview}
