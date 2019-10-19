@@ -19,16 +19,20 @@ export default function Navbarr(props) {
     window.addEventListener('scroll', handleScroll);
   }, [])
   
+  const Update = (event) => {
+    window.location.reload(false);
+  }
   
     return (
         <div>    
 <Navbar collapseOnSelect expand="lg" variant="dark" fixed="top" className="transition" style={{ backgroundColor: scrolling ? "black": "transparent"}}>
-  <Navbar.Brand href="#home"><img src={logo} className="logo" /></Navbar.Brand>
+  <Navbar.Brand><img src={logo} className="logo" /></Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="mr-auto">
-      <Nav.Link href="#">HOME</Nav.Link>
+      <Nav.Link href="#" onClick={Update.bind(this)}>HOME</Nav.Link>
       <Nav.Link href="#">LATEST MOVIES</Nav.Link>
+      <Nav.Link href="#">UPCOMING MOVIES</Nav.Link>
     </Nav>
     <Nav>
     </Nav>
