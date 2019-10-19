@@ -31,6 +31,10 @@
   color: #E50914;
 }
 
+#responsive-navbar-nav {
+  background : black;
+}
+
 .main {
   width: 70%;
 }
