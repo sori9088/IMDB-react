@@ -48,14 +48,13 @@ class Main extends React.Component {
   constructor(props) { //React.Component 를 상속한 컴포넌트의 생성자를 구현할때, 
     super(props); // 다른 구문에 앞서 super(props)를 호출해야함
     this.state = {
+      loading: true,
       movies: props.movies,
       genres: props.genres,
       allMovies: props.allMovies,
       isOpen: false,
       trailers: [],
-      allGenres: props.allGenres,
-      loading: true,
-      hasError: false,
+      allGenres: props.allGenres
     }
     this.openModal = this.openModal.bind(this);
   }
@@ -81,10 +80,12 @@ class Main extends React.Component {
 
   render() {
     if (!this.props.movies)
-      return <div className="App App-header" style={{ color: 'white' }}>
-        <Spinner animation="border" variant="danger" />
-        <h3>loading...</h3>
-      </div>
+    return <div className="App App-header" style={{ color: 'white' }}>
+      <Spinner 
+      animation="border" 
+      variant="danger" />
+      <h3>loading...</h3>
+    </div>
     return (
       <div className="App App-header container-fluid">
 
@@ -108,7 +109,7 @@ class Main extends React.Component {
         <div className="d-flex flex-wrap main justify-content-center">{this.props.movies && this.props.movies.map((item, i) =>
           <Card className="bg-dark text-white">
             <MDBView hover zoom>
-              <img src={`https://image.tmdb.org/t/p/w400/${item.backdrop_path}`} className="img-fluid" alt="This movie doesn't have images" />
+              <img src={`https://image.tmdb.org/t/p/w400/${item.backdrop_path}`} className="img-fluid" alt={item.title} />
 
               <MDBMask className="d-flex" overlay="black-strong" onClick={this.openModal}>
                 <Card.ImgOverlay className="text-center scroll">

@@ -22,7 +22,8 @@ export default function Navbarr(props) {
   const Update = (event) => {
     window.location.reload(false);
   }
-  
+
+
     return (
         <div>    
 <Navbar collapseOnSelect expand="lg" variant="dark" fixed="top" className="transition" style={{ backgroundColor: scrolling ? "black": "transparent"}}>
@@ -30,9 +31,9 @@ export default function Navbarr(props) {
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="mr-auto">
-      <Nav.Link href="#" onClick={Update.bind(this)}>HOME</Nav.Link>
-      <Nav.Link href="#">LATEST MOVIES</Nav.Link>
-      <Nav.Link href="#">UPCOMING MOVIES</Nav.Link>
+      <Nav.Link href="#" onClick={Update.bind(this)}>NOW SHOWING</Nav.Link>
+      {/* <Nav.Link href="#">LATEST MOVIES</Nav.Link> */}
+      <Nav.Link href="#" onClick={() => props.upcomingMovies()}>UPCOMING MOVIES</Nav.Link>
     </Nav>
     <Nav>
     </Nav>

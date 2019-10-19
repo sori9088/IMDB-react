@@ -6,11 +6,9 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Main from './components/Main';
 import Header from './components/Header';
-import { Button } from 'react-bootstrap';
+import { Button, Spinner } from 'react-bootstrap';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
-
-
 
 
 class App extends React.Component {
@@ -19,6 +17,7 @@ class App extends React.Component {
     super(props); // 다른 구문에 앞서 super(props)를 호출해야함
 
     this.state = {
+      hasError: false,
       movies: [],
       genres: [],
       allMovies: [],
@@ -69,7 +68,7 @@ class App extends React.Component {
   }
 
 
-  renderGenre = (movies, genres) => {
+   renderGenre = (movies, genres) => {
     let genre = movies.map((item) => item.genre_ids)
 
     let filteredG = genre.map(item => {
@@ -83,6 +82,7 @@ class App extends React.Component {
     this.setState({ allGenres: filteredG });
 
   }
+
 
 
 
@@ -123,10 +123,33 @@ class App extends React.Component {
 
   }
 
+  upcomingMovies = async () => {
+    this.setState({
+      movies: [],
+      newMovies : [],
+      pageNumber: 1
+    });
+
+    const api = process.env.REACT_APP_API;
+    const url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${api}&language=en-US&page=${this.state.pageNumber}`
+    const response = await fetch(url);
+    const data = await response.json();
+    let movies = data.results;
+    console.log('139', movies)
+    const newMovies = this.state.movies.concat(movies);
+
+
+      this.setState({ //받은 데이터를 state에 넣어준다.
+        movies: newMovies,
+        allMovies : newMovies,
+        pageNumber : this.state.pageNumber+1
+      });
+
+  }
 
 
   render() {
-    console.log('eleek', this.state.query)
+
     return (
       <div className="App container-fluid">
 
@@ -134,6 +157,7 @@ class App extends React.Component {
           <Navbar 
           searchData={this.searchData}
           onChanngequery={this.onChanngequery}
+          upcomingMovies={this.upcomingMovies}
           />
         </nav>
         <header>
