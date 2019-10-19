@@ -12,12 +12,6 @@ import 'react-input-range/lib/css/index.css';
 
 
 
-// - total
-// - genre
-// 4. footer
-// -pagination
-// 5. 
-
 
 class App extends React.Component {
 
@@ -153,14 +147,6 @@ class App extends React.Component {
         onChange={value => this.onRatingSliderChange(value)} />
         Rating
       </div>
-      <div className="range container-fluid">
-        <InputRange
-        maxValue={10}
-        minValue={0}
-        value={this.state.ratingVal}
-        onChange={value => this.onRatingSliderChange(value)} />
-        Year
-        </div>
         
         {this.state.movies.length > 0 && <Main
           movies={this.state.movies}
