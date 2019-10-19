@@ -17,13 +17,12 @@ const customStyles = {
     width: '100%',
     height: '100%',
     backgroundColor: 'rgba(0,0,0,0.5)',
-    cursor: 'pointer',
     opacity: 1,
 
   },
   content: {
-    width: '720px',
-    height: '480px',
+    width: '60vw',
+    height: '40vw',
     margin: 'auto',
     outline: "none",
     padding: "20px",
@@ -31,13 +30,12 @@ const customStyles = {
     background: "#333",
     borderRadius: "4px",
     border: "1px solid #ccc",
-    WebkitOverflowScrolling: "touch"
   }
 }
 
 const opts = {
-  height: '390',
-  width: '640',
+  height: '600vw',
+  width: '800vw',
   playerVars: { // https://developers.google.com/youtube/player_parameters
     autoplay: 1
   }
@@ -96,6 +94,7 @@ class Main extends React.Component {
           isOpen={this.state.isOpen}
           style={customStyles}
           contentLabel="Example Modal"
+          id="modal"
         >
           <MDBCloseIcon onClick={() => this.setState({ isOpen: false })} />
           <YouTube
@@ -106,16 +105,15 @@ class Main extends React.Component {
 
 
 
-
         <div className="d-flex flex-wrap main justify-content-center">{this.props.movies && this.props.movies.map((item, i) =>
           <Card className="bg-dark text-white">
             <MDBView hover zoom>
-              <img src={`https://image.tmdb.org/t/p/w400/${item.backdrop_path}`} className="img-fluid" alt="Card image" />
+              <img src={`https://image.tmdb.org/t/p/w400/${item.backdrop_path}`} className="img-fluid" alt="This movie doesn't have images" />
 
               <MDBMask className="d-flex" overlay="black-strong" onClick={this.openModal}>
                 <Card.ImgOverlay className="text-center scroll">
                   <Card.Title><h3>{item.title}</h3></Card.Title>
-                  <Card.Text><Badge variant="danger" style={{ fontSize: 13 }}>{this.props.allGenres && this.props.allGenres[i].join(' ')}</Badge>
+                  <Card.Text><Badge variant="danger" style={{ fontSize: 13 }}>{this.props.allGenres && this.props.allGenres[i]}</Badge>
                   </Card.Text>
                   <Card.Subtitle className="text-muted text-grey"><Moment fromNow>{item.release_date}</Moment></Card.Subtitle>
                   <Card.Text style={{ fontSize: 15 }}>
