@@ -8,7 +8,7 @@ import Main from './components/Main';
 import Header from './components/Header';
 import { Button } from 'react-bootstrap';
 import InputRange from 'react-input-range';
-import '/node_modules/react-input-range/lib/css/index.css';
+import 'react-input-range/lib/css/index.css';
 
 
 
