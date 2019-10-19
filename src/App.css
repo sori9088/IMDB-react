@@ -31,9 +31,6 @@
   color: #E50914;
 }
 
-#responsive-navbar-nav {
-  background : black;
-}
 
 .main {
   width: 70%;
@@ -130,7 +127,7 @@ figure.overlay figcaption {
 @keyframes modal-video-inner{from{transform:translate(0, 100px)}to{transform:translate(0, 0)}}
 
 
-@media (min-width: 100em) {
+@media (min-width: 60em) {
   #modal {
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
