@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One&display=swap');
 @import '/node_modules/react-modal-video/scss/modal-video.scss';
+@import '/node_modules/react-input-range/lib/css/index.css';
 
 .transition {    
   -webkit-transition: all .5s ease-in-out;
