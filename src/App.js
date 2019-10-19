@@ -127,24 +127,31 @@ class App extends React.Component {
     this.setState({
       movies: [],
       newMovies : [],
-      pageNumber: 1
     });
 
+    console.log(this.state.movies)
+    const {pageNumber} = this.state;
+
     const api = process.env.REACT_APP_API;
-    const url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${api}&language=en-US&page=${this.state.pageNumber}`
+    const url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${api}&language=en-US&page=1`
     const response = await fetch(url);
     const data = await response.json();
     let movies = data.results;
     console.log('139', movies)
     const newMovies = this.state.movies.concat(movies);
 
+    const response1 = await fetch(
+      `https://api.themoviedb.org/3/genre/movie/list?api_key=${api}`
+    );
+  const { genres } = await response1.json();
+  this.setState({ genres });
+
 
       this.setState({ //받은 데이터를 state에 넣어준다.
         movies: newMovies,
         allMovies : newMovies,
-        pageNumber : this.state.pageNumber+1
       });
-
+      this.renderGenre(newMovies, genres);
   }
 
 
