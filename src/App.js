@@ -9,6 +9,36 @@ import Header from './components/Header';
 import { Button, Spinner } from 'react-bootstrap';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
+import Modal from 'react-modal';
+import YouTube from '@u-wave/react-youtube';
+
+
+const customStyles = {
+    overlay: {
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      position: "fixed",
+      backgroundColor: "rgba(0, 0, 0, 0.75)"
+    },
+    content: {
+      top: "10%",
+      left: "10%",
+      right: "10%",
+      width: "80%",
+      bottom: "10%",
+      height: "80%",
+      outline: "none",
+      padding: "20px",
+      overflow: "auto",
+      background: "#000",
+      borderRadius: "4px",
+      position: "absolute",
+      border: "1px solid #ccc",
+      WebkitOverflowScrolling: "touch"
+    }
+}
 
 
 class App extends React.Component {
@@ -24,7 +54,10 @@ class App extends React.Component {
       pageNumber: 1,
       allGenres: [],
       query:'',
-      ratingVal: { min: 0, max: 10 }
+      ratingVal: { min: 0, max: 10 },
+      trailers: null,
+      key: null,
+      isOpen : false
     }
 
   }
@@ -108,6 +141,8 @@ class App extends React.Component {
  
   }
 
+
+
   onRatingSliderChange = (val) => {
     const newMovies = this.state.allMovies.filter(movie => {
       const isAboveMinimumRating = movie.vote_average >= val.min
@@ -150,11 +185,47 @@ class App extends React.Component {
       this.renderGenre(movies, genres);
   }
 
+  getVideo = async (id) => {
+    const api = process.env.REACT_APP_API;
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${api}&language=en-US`
+    );
+    const data = await response.json();
+    console.log(data)
+    const items = data.results;
+    const trailerkey = items[Math.floor(Math.random()*items.length)];
+    this.setState({ key: trailerkey.key })
+  }
+
+  
+  openModal = async (id) => {
+    if(!this.state.isOpen) {
+      await this.getVideo(id)
+    }
+
+    this.setState({ isOpen: !this.state.isOpen })
+
+  }
+
 
   render() {
 
     return (
       <div className="App container-fluid">
+           <Modal
+            isOpen={this.state.isOpen}
+            onRequestClose={this.openModal}
+            style={customStyles}
+            contentLabel="Example Modal"
+            id="modal"
+          >
+            <YouTube
+            video={this.state.key}
+            autoplay
+            width = '100%'
+            height = '100%'
+            />
+          </Modal>
 
         <nav>
           <Navbar 
@@ -180,7 +251,10 @@ class App extends React.Component {
           genres={this.state.genres}
           allMovies={this.state.allMovies}
           allGenres={this.state.allGenres}
-
+          getVideo={this.getVideo}
+          trailerkey={this.state.trailerkey}
+          openModal={this.openModal}
+          isOpen={this.state.isOpen}
         />}
         <Button class="d-flex justify-content-center" id="load-more-btn" variant="danger" type="button" onClick={() => this.getData()}>
           Load More

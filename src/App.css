@@ -122,24 +122,10 @@ figure.overlay figcaption {
   margin-bottom : 20px;
 
 }
-/* modal video  */
 
-@keyframes modal-video{from{opacity:0}to{opacity:1}}
-@keyframes modal-video-inner{from{transform:translate(0, 100px)}to{transform:translate(0, 0)}}
-
-
-@media (min-width: 60em) {
-  #modal {
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-    height:75%;
-    margin:5% auto;
-    max-height: 50em;
-     max-width:60em;
-     width:85%;
-    
-  }
-
+iframe {
+  width: 100%;
+  height: 100%;
 }
 
 .input-range__track {
