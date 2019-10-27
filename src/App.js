@@ -57,9 +57,10 @@ class App extends React.Component {
       ratingVal: { min: 0, max: 10 },
       trailers: null,
       key: null,
-      isOpen : false
+      isOpen : false,
+      disabled : false
     }
-
+    this.upcomingMovies = this.upcomingMovies.bind(this);
   }
 
   onChanngequery=(value)=>{
@@ -95,7 +96,6 @@ class App extends React.Component {
     else {
       alert('Error : 404');
     }
-    console.log('app.js', this.state.movies)
 
   }
 
@@ -110,7 +110,6 @@ class App extends React.Component {
       })
       return yy
     })
-    console.log("filteredG", filteredG);
     this.setState({ allGenres: filteredG });
 
   }
@@ -137,7 +136,6 @@ class App extends React.Component {
     this.setState({
       movies : filteredMovies,
       pageNumber : 1})
-    console.log('filteredMo',filteredMovies)
  
   }
 
@@ -158,18 +156,20 @@ class App extends React.Component {
   }
 
   upcomingMovies = async () => {
-    this.setState({
-      movies: [],
-      newMovies : [],
-    });
 
-    console.log(this.state.movies)
+    await this.setState({ 
+      movies : [],
+      allMovies : [],
+      pageNumber : 1})
+
+    let { pageNumber } = this.state;
 
     const api = process.env.REACT_APP_API;
-    const url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${api}&language=en-US&page=1`
+    const url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${api}&language=en-US&page=${pageNumber}`
     const response = await fetch(url);
     const data = await response.json();
     let movies = data.results;
+    const newMovies = movies;
 
     const response1 = await fetch(
       `https://api.themoviedb.org/3/genre/movie/list?api_key=${api}`
@@ -179,8 +179,10 @@ class App extends React.Component {
 
 
       this.setState({ //받은 데이터를 state에 넣어준다.
-        movies: movies,
-        allMovies : movies,
+        movies: newMovies,
+        allMovies : newMovies,
+        pageNumber: pageNumber + 1,
+        disabled : true
       });
       this.renderGenre(movies, genres);
   }
@@ -191,7 +193,6 @@ class App extends React.Component {
       `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${api}&language=en-US`
     );
     const data = await response.json();
-    console.log(data)
     const items = data.results;
     const trailerkey = items[Math.floor(Math.random()*items.length)];
     this.setState({ key: trailerkey.key })
@@ -256,7 +257,7 @@ class App extends React.Component {
           openModal={this.openModal}
           isOpen={this.state.isOpen}
         />}
-        <Button class="d-flex justify-content-center" id="load-more-btn" variant="danger" type="button" onClick={() => this.getData()}>
+        <Button class="d-flex justify-content-center" id="load-more-btn" variant="danger" type="button" onClick={() => this.getData()} disabled={this.state.disabled}>
           Load More
         </Button>
       </div>

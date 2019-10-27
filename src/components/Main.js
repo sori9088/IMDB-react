@@ -23,12 +23,12 @@ class Main extends React.Component {
 
 
   render() {
-    // if (!this.props.movies) return <div className="App App-header" style={{ color: 'white' }}>
-    //   <Spinner
-    //     animation="border"
-    //     variant="danger" />
-    //   <h3>loading...</h3>
-    // </div>
+    if (!this.props.movies) return <div className="App App-header" style={{ color: 'white' }}>
+      <Spinner
+        animation="border"
+        variant="danger" />
+      <h3>loading...</h3>
+    </div>
 
     return  (
       <> 
@@ -57,6 +57,7 @@ class Main extends React.Component {
                     </Card.ImgOverlay>
                   </MDBMask>
                 </MDBView>
+                <Card.Header className="d-flex justify-content-end align-content-center"><h4 style={{color:'red'}}>★ </h4><h5> {item.vote_average}</h5></Card.Header>
               </Card>
            </>
 )
